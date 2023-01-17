@@ -1,0 +1,1 @@
+alter table vme.dat_drivers rename column phone to contact_info;

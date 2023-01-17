@@ -1,0 +1,68 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+  application:
+    name: 'vme project'
+
+  profiles:
+    active: ${SPRING_PROFILE:local}
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    show-sql: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://dev-ektp02.spherelab.local:5432/vmedb}
+    username: ${DB_USER:pilot}
+    password: ${DB_PASSWORD:pilot}
+
+  rabbitmq:
+    host: ${RABBIT_URL:127.0.0.1}
+    virtual-host: ${RABBIT_VHOST:/}
+    username: ${RABBIT_USER:pilot}
+    password: ${RABBIT_PASSWORD:pilot}
+
+  liquibase:
+    change-log: classpath:db/changelog.xml
+    liquibase-schema: public
+
+  jackson:
+    default-property-inclusion: non_null
+
+keycloak:
+  realm: ${KC_REALM:vme}
+  auth-server-url: ${KC_AUTH_SERVER_URL:http://192.168.1.8:8081/auth}
+  ssl-required: none
+  resource: ${KC_RESOURCE:vme-server}
+  credentials:
+    secret: ${KC_SECRET:vjjJfsqVLcjjZ4MLYRXxVqWVxNGqCWV8}
+  bearer-only: true
+
+info:
+  app:
+    team: ektp
+
+mq:
+  queue:
+    incoming: ${QUEUE_IN:q:rt_VME}
+    outcoming: ${QUEUE_OUT:q:rt_EKTP}
+  exchange:
+    outcoming: ${EXCHANGE_OUT:ex:rt_EKTP_PROD}
+  rk:
+    outcoming: ${RK_OUT:EKTP_PROD}
+  app-uid: ${APP_UID:VME}
+  api-version: 2

@@ -1,0 +1,1 @@
+alter table vme.dat_vehicles add vin varchar(255);

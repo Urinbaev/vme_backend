@@ -1,0 +1,1 @@
+alter table vme.dat_vehicles add mark varchar(255);

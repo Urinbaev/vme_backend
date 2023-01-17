@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"
+        logicalFilePath="db/changelog.xml">
+
+    <changeSet id="1" author="PlekinAV">
+        <comment>Создание схемы</comment>
+        <sqlFile path="changeset/001_init_schema.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="2" author="PlekinAV">
+        <comment>Создание таблицы dat_requests</comment>
+        <sqlFile path="changeset/002_create_table_dat_requests.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="3" author="ShishkinLA">
+        <comment>Создание таблицы dat_companies</comment>
+        <sqlFile path="changeset/003_create_table_dat_companies.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="4" author="Pavel">
+        <comment>Создание таблицы dat_vehicle_types</comment>
+        <sqlFile path="changeset/004_create_table_dic_vehicle_types.sql" relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="5" author="Pavel">
+        <comment>Создание таблицы dat_vehicles</comment>
+        <sqlFile path="changeset/005_create_table_dat_vehicles.sql" relativeToChangelogFile="true"
+                 splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="6" author="ShishkinLA">
+        <comment>Создание сущности водителей</comment>
+        <sqlFile path="changeset/006_create_table_dat_drivers.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="7" author="ShishkinLA">
+        <comment>Привязка водителя к ТС</comment>
+        <sqlFile path="changeset/007_create_table_ref_driver_vehicle.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="8" author="PlekinAV">
+        <comment>Замена name и surname на фио</comment>
+        <sqlFile path="changeset/008_alter_driver_table.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="9" author="PlekinAV">
+        <comment>Замена phone на contactInfo</comment>
+        <sqlFile path="changeset/009_alter_driver_table.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="10" author="PlekinAV">
+        <comment>Добавлено поле previous_state</comment>
+        <sqlFile path="changeset/010_alter_request_table.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="11" author="ShishkinLA">
+        <comment>Добавление vin поля в ТС</comment>
+        <sqlFile path="changeset/011_alter_table_dat_vehicles.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="12" author="ShishkinLA">
+        <comment>Связь водителей с компаниями</comment>
+        <sqlFile path="changeset/012_alter_table_dat_drivers.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="13" author="Pavel">
+        <comment>Добавление mark поля в ТС</comment>
+        <sqlFile path="changeset/013_alter_table_dat_vehicle.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="14" author="PlekinAV">
+        <comment>Связь заявки с ТС</comment>
+        <sqlFile path="changeset/014_create_ref_reqeusts_vehicles_table.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="15" author="VelesevichAE">
+        <comment>Привязать сущность водителей и заявок к владельцу</comment>
+        <sqlFile path="changeset/015_alter_table_dat_request.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="16" author="PlekinAV">
+        <comment>История статуса вынесена в отдельную таблицу</comment>
+        <sqlFile path="changeset/016_create_dat_request_histories_table.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="17" author="PlekinAV">
+        <comment>История статуса вынесена в отдельную таблицу</comment>
+        <sqlFile path="changeset/017_alter_ref_requests_vehicles_table.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+
+    <changeSet id="18" author="VelesevichAE">
+        <comment>Хранить customer в заявках как раздельные поля вместо json</comment>
+        <sqlFile path="changeset/018_alter_table_dat_requests.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="19" author="VelesevichAE">
+        <comment>[BE] При получении заявки также сохранять id типа ТС в сущность заявки</comment>
+        <sqlFile path="changeset/019_alter_table_dat_requests.sql" relativeToChangelogFile="true" splitStatements="false"/>
+    </changeSet>
+</databaseChangeLog>

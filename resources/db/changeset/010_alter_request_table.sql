@@ -1,0 +1,1 @@
+alter table vme.dat_requests add previous_state varchar(50);
